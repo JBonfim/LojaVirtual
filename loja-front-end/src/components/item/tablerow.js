@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link,Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 export default class TableRow extends Component {
     constructor(props) {
@@ -25,8 +26,7 @@ export default class TableRow extends Component {
                 body: JSON.stringify(obj)
             }).then(res => res.json()) // OR res.json()
             .then()
-
-            this.props.router.push('/listProduto');
+            this.props.history.push(`/listProduto`);
     }
   render() {
     return (

@@ -11,6 +11,13 @@ import EditTipoItem from './tipoitem/edit';
 import CreateProtudo from './item/create';
 import ListaProduto from './item/list';
 import EditProduto from './item/edit';
+
+import SelecionarCliente from './alugar/cliente';
+import Pedido from './alugar/pedido';
+import Dashboard from './alugar/dashboard';
+
+
+
 export default class App extends React.Component{
     
     render(){
@@ -56,7 +63,7 @@ export default class App extends React.Component{
                  
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                  <Link to={'/listCategoria'} className="btn btn-outline-success my-2 my-sm-0">Alugar</Link>
+                  <Link to={'/alugar/cliente'} className="btn btn-outline-success my-2 my-sm-0">Alugar</Link>
                 </form>
               </div>
             </nav>
@@ -76,8 +83,15 @@ export default class App extends React.Component{
                   <Route exact path='/newProduto' component={ CreateProtudo } />
                   <Route exact path='/listProduto' component={ ListaProduto } />
                   <Route  path='/produto/edit/:id' component={ EditProduto } />
+
+                  <Route  path='/alugar/cliente' component={ SelecionarCliente } />
+                  <Route  path='/alugar/newpedido/:id' component={ Pedido } />
+                  <Route  path='/dashboard' component={ Dashboard } />
+                  
+                  
+                  
                      {/* routes not finded or 404 */}
-                      <Redirect to="/" />
+                      <Redirect to="/dashboard" />
                 </Switch>
               </div>
               

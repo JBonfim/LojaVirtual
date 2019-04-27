@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TableRow from './tablerow';
 
-export default class ListaCliente extends Component {
+export default class ListaProduto extends Component {
     constructor(props) {
         super(props);
         this.state = {produtos: []};
