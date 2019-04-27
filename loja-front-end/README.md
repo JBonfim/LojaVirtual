@@ -2,8 +2,19 @@
 Front - End da aplicação
 
 
-Instalar Dependencias
+>>>>>Instalar Dependencias<<<<<
 
 npm install
 
 sudo npm install -g webpack
+
+npm add react-router-dom
+
+npm install react-router-dom --save
+
+
+>>>> Iniciar a Aplicação<<<<<<
+
+npm run dev
+
+
