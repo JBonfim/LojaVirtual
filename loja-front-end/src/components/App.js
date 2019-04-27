@@ -8,6 +8,9 @@ import CreateTipoItem from './tipoitem/create';
 import ListaTipoItem from './tipoitem/list';
 import EditTipoItem from './tipoitem/edit';
 
+import CreateProtudo from './item/create';
+import ListaProduto from './item/list';
+import EditProduto from './item/edit';
 export default class App extends React.Component{
     
     render(){
@@ -53,8 +56,7 @@ export default class App extends React.Component{
                  
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                  <input className="form-control mr-sm-2" type="search" placeholder="Pesquisar o Cliente" aria-label="Search"/>
-                  <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+                  <Link to={'/listCategoria'} className="btn btn-outline-success my-2 my-sm-0">Alugar</Link>
                 </form>
               </div>
             </nav>
@@ -70,6 +72,10 @@ export default class App extends React.Component{
                    <Route exact path='/newCategoria' component={ CreateTipoItem } />
                   <Route exact path='/listCategoria' component={ ListaTipoItem } />
                   <Route  path='/categoria/edit/:id' component={ EditTipoItem } />
+                  
+                  <Route exact path='/newProduto' component={ CreateProtudo } />
+                  <Route exact path='/listProduto' component={ ListaProduto } />
+                  <Route  path='/produto/edit/:id' component={ EditProduto } />
                      {/* routes not finded or 404 */}
                       <Redirect to="/" />
                 </Switch>

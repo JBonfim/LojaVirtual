@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 
 export default class TableRow extends Component {
     constructor(props) {
@@ -7,36 +7,44 @@ export default class TableRow extends Component {
         this.delete = this.delete.bind(this);
     }
     delete() {
+     
         const obj = {
-            id: this.props.obj.id,
-            nome: this.props.obj.nome,
-            endereco: this.props.obj.endereco,
-            telefone: this.props.obj.telefone
-          };
+          id: this.props.obj.id,
+          descricao: this.props.obj.descricao,
+          detalhes: this.props.obj.detalhes,
+          valor: this.props.obj.valor,
+          data_criacao: this.props.obj.data_criacao,
+          alugado: this.props.obj.alugado,
+          tipoItem:this.props.obj.tipoItem
+          
+        };
           console.log(obj)
-          fetch('http://localhost:8080/api/cliente', {
+          fetch('http://localhost:8080/api/item', {
                 method: 'DELETE',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(obj)
             }).then(res => res.json()) // OR res.json()
             .then()
 
-            //this.props.push('/');
+            this.props.router.push('/listProduto');
     }
   render() {
     return (
         <tr>
           <td>
-            {this.props.obj.nome}
+            {this.props.obj.descricao}
           </td>
           <td>
-            {this.props.obj.endereco}
+            {this.props.obj.detalhes}
           </td>
           <td>
-            {this.props.obj.telefone}
+            {this.props.obj.valor}
           </td>
           <td>
-            <Link to={"/cliente/edit/"+this.props.obj.id} className="btn btn-primary">Editar</Link>
+            {this.props.obj.tipoItem[0].descricao}
+          </td>
+          <td>
+            <Link to={"/produto/edit/"+this.props.obj.id} className="btn btn-primary">Editar</Link>
           </td>
           <td>
             <button onClick={this.delete} className="btn btn-danger">Excluir</button>

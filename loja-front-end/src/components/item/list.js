@@ -4,19 +4,19 @@ import TableRow from './tablerow';
 export default class ListaCliente extends Component {
     constructor(props) {
         super(props);
-        this.state = {clientes: []};
+        this.state = {produtos: []};
       }
       componentDidMount() {
-        fetch('http://localhost:8080/api/clientes')
+        fetch('http://localhost:8080/api/items')
         .then(res => res.json())
         .then((data) => {
-          this.setState({ clientes: data })
-          console.log(this.state.clientes)
+          this.setState({ produtos: data })
+          console.log(this.state.produtos)
         })
         .catch(console.log)
       }
       tabRow(){
-        return this.state.clientes.map(function(object, i){
+        return this.state.produtos.map(function(object, i){
             return <TableRow obj={object} key={i}  />;
         });
       }
@@ -28,9 +28,10 @@ export default class ListaCliente extends Component {
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Endereço</th>
-                  <th>Telefone</th>
+                  <th>Produto</th>
+                  <th>Detalhes</th>
+                  <th>Preço</th>
+                  <th>Categoria</th>
                   <th colSpan="2">Ação</th>
                 </tr>
               </thead>
