@@ -1,12 +1,17 @@
 package com.minhalojaonline.api.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_CLIENTE")
@@ -20,12 +25,14 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String nome;
-	private String cpf;
-	private String data_nascimento;
 	private String email;
 	private String endereco;
 	private String telefone;
-	private String cep;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 	
 	
 	public long getId() {
@@ -39,18 +46,6 @@ public class Cliente implements Serializable {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getData_nascimento() {
-		return data_nascimento;
-	}
-	public void setData_nascimento(String data_nascimento) {
-		this.data_nascimento = data_nascimento;
 	}
 	public String getEmail() {
 		return email;
@@ -70,10 +65,6 @@ public class Cliente implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+	
+	
 }
