@@ -53,6 +53,8 @@ public class Item implements Serializable {
 	@JoinColumn(name="pedido_id")
 	private Pedido pedido;
 	
+	private double valor;
+	
 	private boolean isAlugado;
 	
 	public long getId() {
@@ -91,6 +93,12 @@ public class Item implements Serializable {
 	}
 	public void setAlugado(boolean isAlugado) {
 		this.isAlugado = isAlugado;
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	
 	

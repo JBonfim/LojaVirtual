@@ -61,7 +61,7 @@ public class ItemResource {
 	
 	@GetMapping("/item/{id}")
 	@ApiOperation(value="retorna a categoria de acordo com o id")
-	public Item getProduto(@PathVariable(value="id") long id){
+	public Item getItem(@PathVariable(value="id") long id){
 		return iRepository.findById(id);
 	}
 	
