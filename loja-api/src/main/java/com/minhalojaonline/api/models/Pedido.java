@@ -1,22 +1,21 @@
 package com.minhalojaonline.api.models;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import net.minidev.json.annotate.JsonIgnore;
 
 
 
@@ -25,7 +24,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="TB_CARRINHO")
+@Table(name="TB_PEDIDO")
 public class Pedido implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -40,8 +39,20 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy="pedido")
-	private Set<Item> itens = new HashSet<Item>();
+//	@OneToMany(mappedBy="pedido")
+//	private Set<Item> itens = new HashSet<Item>();
+	
+//	@JsonIgnore
+//	@OneToMany
+//	private List<Item> itens = new ArrayList<Item>();
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "PEDIDO_ITENS",
+		joinColumns = @JoinColumn(name="pedido_id"),
+		inverseJoinColumns = @JoinColumn(name="item_id")
+	)
+	private List<Item> itens = new ArrayList<Item>();
 	
 //	@ManyToMany(fetch = FetchType.LAZY)
 //	private List<Item> itens;
@@ -78,10 +89,10 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 	}
 	
-	public Set<Item> getItens() {
+	public List<Item> getItens() {
 		return itens;
 	}
-	public void setItens(Set<Item> itens) {
+	public void setItens(List<Item> itens) {
 		this.itens = itens;
 	}
 	public double getTotal() {

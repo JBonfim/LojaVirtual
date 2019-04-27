@@ -49,9 +49,10 @@ public class Item implements Serializable {
 	)
 	private List<TipoItem> tipoItem = new ArrayList<TipoItem>();
 	
-	@ManyToOne
-	@JoinColumn(name="pedido_id")
-	private Pedido pedido;
+//	@ManyToOne
+//	private Pedido pedido;
+	@ManyToMany(mappedBy="itens")
+	private List<Pedido> pedido = new ArrayList<Pedido>();
 	
 	private double valor;
 	
