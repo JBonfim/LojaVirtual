@@ -13,7 +13,7 @@ export default class Dashboard extends Component {
           this.setState({ pedidos: data })
           console.log(this.state.pedidos)
         })
-        .catch(console.log), 1000);
+        .catch(console.log), 3000);
        
       }
 
